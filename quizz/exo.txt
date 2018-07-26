@@ -1,0 +1,18 @@
+Créer une application angular "proverbApp"
+
+Côté Front :
+une SPA avec un bouton "Charger un proverbe"
+Le clic affichera un proverbe de maniètre alétoire (rand)
+
+côté Back :
+Administrer des proverbes avec Symfony
+Un proverbe aura :
+- un intitulé (title)
+- un auteur (exemple: Platon)
+- une catégorie (exemple: Amour)
+
+Prévoir deux entités: Proverb, Category
+manyto one
+
+onetomany
+Faire le crud des deux entités
