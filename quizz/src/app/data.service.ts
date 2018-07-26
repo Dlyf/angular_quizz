@@ -42,6 +42,8 @@ export class DataService {
   }
 
   postClientAnswers(client_answers: ClientAnswer[]) {
+    // transformation en JSON du tbleau client_answers
+    let json
     return this.http.post(this.api + '/quizz_answers', {answers:client_answers});
   }
 }

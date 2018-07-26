@@ -28,6 +28,9 @@ export class QuizzComponent implements OnInit {
   client_answers: ClientAnswer[] = [];
 
   btnValidDisabled: boolean = true;
+  isQcmCompleted: boolean = true;
+
+  score: number = 0;
 
   constructor(private dataService: DataService) { }
   // this.dataService = new DataService;
@@ -82,6 +85,7 @@ export class QuizzComponent implements OnInit {
       // envoi des réponses au serveur pour validation
 
       this.sendAnswers();
+
 
     }
 
@@ -162,8 +166,22 @@ export class QuizzComponent implements OnInit {
     // envoi des réponses au serveur via dataService
     this.dataService.postClientAnswers(this.client_answers)
       .subscribe((res) => {
-        console.log(res);
+        this.score = res.result;
+        // console.log(res);
+        this.isQcmCompleted = true;
+        this.reset();
       })
        console.log('Envoi de réponses');
+   }
+   reset() {
+     this.questions = [];
+     this.selectCategory = 0;
+     this.selectDifficulty = 0;
+     this.nbQuestions = 10;
+     this.isQcmReceived = false; // qcp reçu ou pas
+     this.indexQuestion  = 0;
+     this.client_answers = [];
+     this.btnValidDisabled  = true;
+     this.isQcmCompleted = true;
    }
 }

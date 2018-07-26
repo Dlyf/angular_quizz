@@ -1,3 +1,4 @@
+<!-- Formulaire pour générer un QCM -->
 <div class="quizz-form" [ngClass]="{'not-visible':isQcmReceived}">
 
   <div class="form-group">
@@ -34,8 +35,8 @@
     <li *ngFor="let student of students">{{student.name}}</li>
   </ul>
 </div>
-
-<div *ngIf="questions.length >0" class="quizz" [ngClass]="{'not-visible':!isQcmReceived}">
+<!-- Affichage du QCM -->
+<div *ngIf="questions.length > 0 && !isQcmCompleted" class="quizz">
   <span>Question {{indexQuestion + 1}} sur {{ questions.length }}</span>
   <h3>{{ questions[indexQuestion].label }}</h3>
 
@@ -46,4 +47,9 @@
   </ul>
 
   <button (click)="validQuestion()" [disabled]="btnValidDisabled" class="btn btn-primary">Valider</button>
+</div>
+
+<div class="quizz-result" [ngClass]="{'not-visible':!isQcmCompleted}">
+  <h2>Score: {{score}} / {{questions.length}}</h2>
+  <button class="btn btn-primary" (click)="reset()">Rejouer</button>
 </div>
